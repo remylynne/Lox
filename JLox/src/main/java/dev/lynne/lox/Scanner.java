@@ -1,13 +1,13 @@
-package dev.lynne;
+package dev.lynne.lox;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static dev.lynne.TokenType.*;
+import static dev.lynne.lox.TokenType.*;
 
-public class Scanner {
+class Scanner {
     private final String source;
     private final List<Token> tokens = new ArrayList<>();
     private int start = 0;

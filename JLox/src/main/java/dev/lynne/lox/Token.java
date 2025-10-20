@@ -1,6 +1,6 @@
-package dev.lynne;
+package dev.lynne.lox;
 
-public class Token {
+class Token {
     final TokenType type;
     final String lexeme;
     final Object literal;
