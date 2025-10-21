@@ -27,8 +27,10 @@ public class JLox {
         byte[] bytes = Files.readAllBytes(Paths.get(path));
         run(new String(bytes, Charset.defaultCharset()));
 
-        if (hadError) System.exit(65);
-        if (hadRuntimeError) System.exit(70);
+        if (hadError)
+            System.exit(65);
+        if (hadRuntimeError)
+            System.exit(70);
     }
 
     private static void runPrompt() throws IOException {
@@ -52,7 +54,14 @@ public class JLox {
         List<Stmt> statements = parser.parse();
 
         // Stop if there was a syntax error.
-        if (hadError) return;
+        if (hadError)
+            return;
+
+        Resolver resolver = new Resolver(interpreter);
+        resolver.resolve(statements);
+
+        if (hadError)
+            return;
 
         interpreter.interpret(statements);
     }
@@ -67,11 +76,10 @@ public class JLox {
     }
 
     static void error(Token token, String message) {
-        if (token.type == TokenType.EOF) {
+        if (token.type == TokenType.EOF)
             report(token.line, " at end", message);
-        } else {
+        else
             report(token.line, " at '" + token.lexeme + "'", message);
-        }
     }
 
     static void runtimeError(RuntimeError error) {
